@@ -6,6 +6,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, onBeforeUnmount, onUnmounted } from 'vue'
+import { test1, test2 } from './test'
 
 export default defineComponent({
   name: 'test',
@@ -23,6 +24,8 @@ export default defineComponent({
     onUnmounted(() => {
       console.log('ID为' + props.item.id + '的项【已经】被删除')
     })
+    test1()
+    test2()
     return {
       remove,
     }
