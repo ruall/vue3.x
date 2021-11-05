@@ -1,23 +1,30 @@
 <template>
   <div>
-    <Test
+    <Hello
       v-for="(item, index) in data"
       :key="index"
       :item="item"
       @remove="remove"
     />
+    <Number :count="count" @add="add" />
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import Test from './components/Test.vue'
+import { defineComponent, ref, getCurrentInstance } from 'vue'
+import Hello from './components/Hello.vue'
+import Number from './components/Number.vue'
+
 export default defineComponent({
   name: 'App',
   components: {
-    Test,
+    Hello,
+    Number,
   },
   setup() {
+    const { proxy } = getCurrentInstance()
+    console.log(proxy.utils.add(1, 2))
+
     const data = ref([
       {
         id: 0,
@@ -39,9 +46,15 @@ export default defineComponent({
     const remove = (id) => {
       data.value = data.value.filter((item) => item.id !== id)
     }
+    const count = ref(0)
+    const add = (val) => {
+      count.value += val
+    }
     return {
       data,
       remove,
+      count,
+      add,
     }
   },
 })

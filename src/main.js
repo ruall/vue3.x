@@ -1,5 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './index.css'
+import * as utils from './libs/utils'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+app.config.globalProperties.utils = utils
+
+console.log(app)
+
+app.mount('#app')

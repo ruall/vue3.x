@@ -9,7 +9,7 @@ import { defineComponent, onBeforeUnmount, onUnmounted } from 'vue'
 import { test1, test2 } from './test'
 
 export default defineComponent({
-  name: 'test',
+  name: 'Hello',
   props: {
     item: Object,
   },
