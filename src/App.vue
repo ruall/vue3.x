@@ -9,6 +9,7 @@
     <Number :count="count" @add="add" /> -->
     <watch-eff></watch-eff>
     <watch />
+    <Parent :name="name" />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import Hello from './components/Hello.vue'
 import Number from './components/Number.vue'
 import watchEff from './components/watchEffect.vue'
 import watch from './components/Watch.vue'
+import Parent from './components/Parent.vue'
 
 export default defineComponent({
   name: 'App',
@@ -26,6 +28,10 @@ export default defineComponent({
     Number,
     watchEff,
     watch,
+    Parent,
+  },
+  provide: {
+    name: '里斯本',
   },
   setup() {
     const { proxy } = getCurrentInstance()
