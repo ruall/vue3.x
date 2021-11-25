@@ -10,16 +10,25 @@
     <watch-eff></watch-eff>
     <watch />
     <Parent :name="name" />
+    <Parentn :name="name" :age="age" :hobby="hobby" :career="career" />
+    <!-- <button @click="change">修改</button> -->
   </div>
 </template>
 
 <script>
-import { defineComponent, ref, getCurrentInstance } from 'vue'
+import {
+  defineComponent,
+  ref,
+  getCurrentInstance,
+  onMounted,
+  provide,
+} from 'vue'
 import Hello from './components/Hello.vue'
 import Number from './components/Number.vue'
 import watchEff from './components/watchEffect.vue'
 import watch from './components/Watch.vue'
 import Parent from './components/Parent.vue'
+import Parentn from './components/Parent-1.vue'
 
 export default defineComponent({
   name: 'App',
@@ -29,14 +38,27 @@ export default defineComponent({
     watchEff,
     watch,
     Parent,
+    Parentn,
   },
-  provide: {
-    name: '里斯本',
-  },
+  // provide: {
+  //   name: '里斯本',
+  // },
   setup() {
     const { proxy } = getCurrentInstance()
     console.log(proxy.utils.add(1, 2))
-
+    // onMounted(() => {
+    //   name = '安东尼'
+    //   console.log(name)
+    // })
+    const change = () => {
+      name.value = '李四'
+    }
+    const name = ref('张三')
+    provide('name', name)
+    provide('age', 26)
+    provide('hobby', 'travel')
+    provide('career', 'programmer')
+    provide('changeName', change)
     const data = ref([
       {
         id: 0,
@@ -67,6 +89,7 @@ export default defineComponent({
       remove,
       count,
       add,
+      change,
     }
   },
 })

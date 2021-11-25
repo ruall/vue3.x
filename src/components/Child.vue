@@ -1,16 +1,16 @@
 <template>
-  <div>{{ name }}</div>
+  <h3>{{ name }}</h3>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 export default defineComponent({
-  props: {
-    name: String,
-  },
   inject: ['name'],
   setup() {
-    return {}
+    // const name = inject('name', '1')
+    // return {
+    //   name,
+    // }
   },
 })
 </script>
